@@ -1,46 +1,34 @@
-# Astro Starter Kit: Basics
+# Website Resmi Kelas 01SIFP010
 
-```sh
-npm create astro@latest -- --template basics
-```
+----
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## List Anggota Kelas
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Ahmad Rayhan Maulana Setiawan
+2. Andini Azaria Zahra
+3. Arrosyid Al Ayubi
+4. Arum Kusuma Dewi
+5. Azzura Agustina
+6. Diaz Prasojo
+7. Diaz Shandika Firdaus
+8. Farah Hilallia Alvina
+9. Gladys Aditya Ramadhan
+10. Haikal Azhar
+11. Harsya Pandawa
+12. Hisyam Arief Firmansyah
+13. Ihwan Ramadani
+14. Isma Khoyriyah
+15. Liza Zulaikha
+16. Maylova Chayananda
+17. Muhamad Gilang Ramadan
+18. Muhammad Rizqi Rahman
+19. Muhammad Shandi Yudha
+20. Muhammad Zaky Permana
+21. Rayhan Priyonggo
+22. Refael Gomgom Sibarani
+23. Rifky Chaezario Hidayat
+24. Rizka Nur Juniarti
+25. Rizky Nur Rahman
+26. Sultan Muhammad Syafiq
+27. Surya Aji Prasetya
+28. Zaqi Alfataillah
