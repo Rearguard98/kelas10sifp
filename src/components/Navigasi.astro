@@ -4,6 +4,7 @@ import { Image } from "astro:assets"
 import logounpam from "../../public/logo-unpam.png";
 ---
 <div class="w-full bg-cyan-950 text-white flex flex-row justify-around items-center p-5">
+    <a href="/">
     <Image src={logounpam}
      alt="Logo UNPAM" 
      height="300"
@@ -12,6 +13,7 @@ import logounpam from "../../public/logo-unpam.png";
      loading="eager"
      fetchpriority="high"
      class="max-h-28 max-w-28" />
+     </a>
     <nav class="p-4 flex flex-row gap-4">
     <ul class="flex flex-row gap-4">
         <li class="hover:underline"><a href="/">Beranda</a></li>
