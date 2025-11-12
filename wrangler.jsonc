@@ -12,5 +12,11 @@
 	},
 	"observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "kelas10sifp.my.id",
+      "custom_domain": true
+    }
+  ]
 }
