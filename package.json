@@ -10,8 +10,15 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.10",
+    "@fontsource/roboto": "^5.2.8",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.5",
-    "tailwindcss": "^4.1.17"
+    "astro-opengraph-images": "^1.13.1",
+    "astro-seo": "^0.8.4",
+    "tailwindcss": "^4.1.17",
+    "tw-to-css": "^0.0.12"
+  },
+  "devDependencies": {
+    "react": "^19.2.0"
   }
 }
