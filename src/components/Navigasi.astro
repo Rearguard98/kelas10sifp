@@ -1,24 +1,64 @@
 ---
 import "../style/global.css";
-import { Image } from "astro:assets"
+import { Image } from "astro:assets";
 import logounpam from "../../public/logo-unpam.png";
+
+const navLinks = [
+    { href: "/", text: "Beranda" },
+    { href: "/#tentang", text: "Tentang" },
+    { href: "/#anggota", text: "Anggota" },
+];
 ---
-<div class="w-full bg-cyan-950 text-white flex flex-row justify-around items-center p-5">
-    <a href="/">
-    <Image src={logounpam}
-     alt="Logo UNPAM" 
-     height="300"
-     width="291"
-     decoding="async"
-     loading="eager"
-     fetchpriority="high"
-     class="max-h-28 max-w-28" />
-     </a>
-    <nav class="p-4 flex flex-row gap-4">
-    <ul class="flex flex-row gap-4">
-        <li class="hover:underline"><a href="/">Beranda</a></li>
-        <li class="hover:underline"><a href="#tentang">Tentang</a></li>
-        <li class="hover:underline"><a href="#anggota">Anggota</a></li>
-    </ul>
+
+<header class="bg-cyan-950 text-white relative">
+    <div class="w-full flex flex-row justify-between items-center p-5">
+        <a href="/">
+            <Image
+                src={logounpam}
+                alt="Logo UNPAM"
+                height="300"
+                width="291"
+                decoding="async"
+                loading="eager"
+                fetchpriority="high"
+                class="max-h-20 max-w-20"
+            />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex p-4">
+            <ul class="flex flex-row gap-6">
+                {navLinks.map((link) => (
+                    <li><a href={link.href} class="hover:underline text-lg">{link.text}</a></li>
+                ))}
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden block" aria-controls="mobile-menu" aria-expanded="false">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-cyan-950">
+        <ul class="flex flex-col items-center gap-4 p-5">
+            {navLinks.map((link) => (
+                <li><a href={link.href} class="hover:underline text-lg">{link.text}</a></li>
+            ))}
+        </ul>
     </nav>
-</div>
+</header>
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        mobileMenu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', !isExpanded);
+    });
+</script>
