@@ -20,7 +20,7 @@ import { navigationLinks } from "../components/navLinks";
             />
         </a>
 
-        <!-- Desktop Navigation -->
+        <!-- Navigasi Utama -->
         <nav class="hidden md:flex p-4">
             <ul class="flex flex-row gap-6">
                 {navigationLinks.map((link) => (
@@ -29,7 +29,7 @@ import { navigationLinks } from "../components/navLinks";
             </ul>
         </nav>
 
-        <!-- Mobile Menu Button -->
+        <!-- Tombol Menu Mobile -->
         <button id="menu-btn" class="md:hidden block" aria-controls="mobile-menu" aria-expanded="false">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -37,7 +37,7 @@ import { navigationLinks } from "../components/navLinks";
         </button>
     </div>
 
-    <!-- Mobile Menu -->
+    <!-- Navigasi Mobile -->
     <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-cyan-950">
         <ul class="flex flex-col items-center gap-4 p-5">
             {navigationLinks.map((link) => (
