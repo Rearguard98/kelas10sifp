@@ -1,7 +1,8 @@
 ---
 import "../style/global.css";
 import { Image } from "astro:assets"
-import logounpam from "../../public/logo-unpam.png";
+import logounpam from "../../public/logo-unpam.png"; // Assuming this path is correct
+import { navigationLinks } from "../components/navLinks";
 ---
 <footer class="p-4 md:p-8 lg:p-10 bg-gray-800">
   <div class="mx-auto max-w-7xl text-center">
@@ -18,15 +19,9 @@ import logounpam from "../../public/logo-unpam.png";
       </a>
       <p class="my-6 text-gray-400">Website Resmi Kelas 01SIFP010 Sistem Informasi UNPAM</p>
       <ul class="flex flex-wrap justify-center items-center mb-6 text-white">
-          <li>
-              <a href="/" class="mr-4 hover:underline md:mr-6 ">Beranda</a>
-          </li>
-          <li>
-              <a href="/#tentang" class="mr-4 hover:underline md:mr-6">Tentang</a>
-          </li>
-          <li>
-              <a href="/#anggota" class="mr-4 hover:underline md:mr-6 ">Anggota</a>
-          </li>
+          {navigationLinks.map((link) => (
+            <li><a href={link.href} class="mr-4 hover:underline md:mr-6">{link.text}</a></li>
+          ))}
       </ul>
       <span class="text-sm sm:text-center text-gray-400">&copy; 2025 <a href="/" class="hover:underline">Kelas01SIFP010</a>. All Rights Reserved.</span>
   </div>
