@@ -30,13 +30,13 @@ import { navigationLinks } from "../components/navLinks";
         </nav>
 
         <!-- Tombol Menu Mobile -->
-        <button id="menu-btn" class="md:hidden block" aria-controls="mobile-menu" aria-expanded="false">
+        <button id="menu-btn" class="md:hidden block" aria-controls="mobile-menu" aria-expanded="false" aria-label="Buka menu navigasi">
             <!-- Ikon Hamburger -->
-            <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
             <!-- Ikon tutup (X) -->
-            <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
@@ -44,7 +44,7 @@ import { navigationLinks } from "../components/navLinks";
 
     <!-- Navigasi Mobile -->
     <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-cyan-950">
-        <ul class="flex flex-col items-center gap-4 p-5">
+        <ul id="mobile-menu-list" class="flex flex-col items-center gap-4 p-5">
             {navigationLinks.map((link) => (
                 <li><a href={link.href} class="hover:underline text-lg">{link.text}</a></li>
             ))}
@@ -55,28 +55,51 @@ import { navigationLinks } from "../components/navLinks";
 <script>
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuList = document.getElementById('mobile-menu-list');
     const hamburgerIcon = document.getElementById('hamburger-icon');
     const closeIcon = document.getElementById('close-icon');
 
-    if (menuBtn && mobileMenu && hamburgerIcon && closeIcon) {
-        menuBtn.addEventListener('click', () => {
-            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-            mobileMenu.classList.toggle('hidden');
+    if (menuBtn && mobileMenu && hamburgerIcon && closeIcon && mobileMenuList) {
+        const toggleMenu = () => {
+            const isExpanded = mobileMenu.classList.toggle('hidden');
             hamburgerIcon.classList.toggle('hidden');
             closeIcon.classList.toggle('hidden');
             menuBtn.setAttribute('aria-expanded', String(!isExpanded));
-        });
+
+            if (!isExpanded) {
+                // Menu is open
+                menuBtn.setAttribute('aria-label', 'Tutup menu navigasi');
+                // Move focus to the first link in the menu
+                (mobileMenuList.querySelector('a') as HTMLElement | null)?.focus();
+            } else {
+                // Menu is closed
+                menuBtn.setAttribute('aria-label', 'Buka menu navigasi');
+                // Return focus to the menu button
+                menuBtn.focus();
+            }
+        };
+
+        menuBtn.addEventListener('click', toggleMenu);
 
         // tutup menu saat klik di luar menu
         document.addEventListener('click', (event) => {
             const isClickInsideMenu = mobileMenu.contains(event.target as Node);
             const isClickOnMenuButton = menuBtn.contains(event.target as Node);
             const isMenuOpen = !mobileMenu.classList.contains('hidden');
-
+            
             if (isMenuOpen && !isClickInsideMenu && !isClickOnMenuButton) {
-                menuBtn.click(); // klik pada tombol menu untuk menutupnya
+                toggleMenu(); // Close the menu
             }
         });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (event) => {
+            const isMenuOpen = !mobileMenu.classList.contains('hidden');
+            if (isMenuOpen && event.key === 'Escape') {
+                toggleMenu(); // Close the menu
+            }
+        });
+
     } else {
         console.error("Tombol menu atau menu mobile tidak ditemukan.");
     }
