@@ -69,8 +69,8 @@ import { navigationLinks } from "../components/navLinks";
 
         // tutup menu saat klik di luar menu
         document.addEventListener('click', (event) => {
-            const isClickInsideMenu = mobileMenu.contains(event.target);
-            const isClickOnMenuButton = menuBtn.contains(event.target);
+            const isClickInsideMenu = mobileMenu.contains(event.target as Node);
+            const isClickOnMenuButton = menuBtn.contains(event.target as Node);
             const isMenuOpen = !mobileMenu.classList.contains('hidden');
 
             if (isMenuOpen && !isClickInsideMenu && !isClickOnMenuButton) {
