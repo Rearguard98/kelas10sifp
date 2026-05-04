@@ -14,10 +14,8 @@
     "@fontsource/roboto": "^5.2.8",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^6.2.2",
-    "astro-opengraph-images": "^1.13.1",
     "astro-seo": "^0.8.4",
-    "tailwindcss": "^4.1.17",
-    "tw-to-css": "^0.0.12"
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "react": "^19.2.0"
