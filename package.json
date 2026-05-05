@@ -11,9 +11,9 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@fontsource/roboto": "^5.2.8",
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/vite": "^4.1.18",
     "astro": "^6.2.2",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
     "react": "^19.2.0"

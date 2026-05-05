@@ -24,7 +24,29 @@ import { navigationLinks } from "../components/navLinks";
         <nav class="hidden md:flex p-4">
             <ul class="flex flex-row gap-6">
                 {navigationLinks.map((link) => (
-                    <li><a href={link.href} class="hover:underline text-lg">{link.text}</a></li>
+                    <li class="relative group">
+                        {link.submenu ? (
+                            <>
+                                <button class="hover:underline text-lg flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-cyan-300 rounded px-2 py-1">
+                                    {link.text}
+                                    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <ul class="absolute top-full left-0 mt-2 w-48 bg-cyan-900 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                    {link.submenu.map((subLink) => (
+                                        <li>
+                                            <a href={subLink.href} class="block px-4 py-2 text-sm hover:bg-cyan-800 hover:text-white rounded-md transition-colors">
+                                                {subLink.text}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </>
+                        ) : (
+                            <a href={link.href} class="hover:underline text-lg">{link.text}</a>
+                        )}
+                    </li>
                 ))}
             </ul>
         </nav>
@@ -46,7 +68,29 @@ import { navigationLinks } from "../components/navLinks";
     <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-cyan-950">
         <ul id="mobile-menu-list" class="flex flex-col items-center gap-4 p-5">
             {navigationLinks.map((link) => (
-                <li><a href={link.href} class="hover:underline text-lg">{link.text}</a></li>
+                <li class="w-full">
+                    {link.submenu ? (
+                        <>
+                            <button class="submenu-toggle hover:underline text-lg w-full text-center flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-cyan-300 rounded px-2 py-1" data-submenu={link.text}>
+                                {link.text}
+                                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <ul class="submenu-items hidden flex-col items-center gap-2 mt-2 ml-4 space-y-1" data-submenu={link.text}>
+                                {link.submenu.map((subLink) => (
+                                    <li class="w-full">
+                                        <a href={subLink.href} class="block text-center hover:underline text-base py-1 px-3 rounded hover:bg-cyan-900 transition-colors">
+                                            {subLink.text}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    ) : (
+                        <a href={link.href} class="hover:underline text-lg block text-center">{link.text}</a>
+                    )}
+                </li>
             ))}
         </ul>
     </nav>
@@ -81,12 +125,30 @@ import { navigationLinks } from "../components/navLinks";
 
         menuBtn.addEventListener('click', toggleMenu);
 
+        // Handle mobile submenu toggles
+        const submenuToggles = mobileMenuList.querySelectorAll('.submenu-toggle');
+        submenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenuName = toggle.getAttribute('data-submenu');
+                const submenuItems = mobileMenuList.querySelector(`.submenu-items[data-submenu="${submenuName}"]`);
+                const icon = toggle.querySelector('svg');
+
+                if (submenuItems && icon) {
+                    const isHidden = submenuItems.classList.contains('hidden');
+                    submenuItems.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180', !isHidden);
+                    toggle.setAttribute('aria-expanded', String(!isHidden));
+                }
+            });
+        });
+
         // tutup menu saat klik di luar menu
         document.addEventListener('click', (event) => {
             const isClickInsideMenu = mobileMenu.contains(event.target as Node);
             const isClickOnMenuButton = menuBtn.contains(event.target as Node);
             const isMenuOpen = !mobileMenu.classList.contains('hidden');
-            
+
             if (isMenuOpen && !isClickInsideMenu && !isClickOnMenuButton) {
                 toggleMenu(); // Close the menu
             }
